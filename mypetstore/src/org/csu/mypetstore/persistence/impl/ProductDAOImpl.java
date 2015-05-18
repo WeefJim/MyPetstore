@@ -15,7 +15,7 @@ public class ProductDAOImpl implements ProductDAO{
     private final static String getProductListByCategoryString = "SELECT PRODUCTID,NAME,DESCN as description,CATEGORY as categoryId FROM PRODUCT WHERE CATEGORY=?";
     private final static String getProductString = "SELECT PRODUCTID,NAME,DESCN as description,CATEGORY as categoryId FROM PRODUCT WHERE PRODUCTID = ?";
     private final static String searchProductListString = "SELECT PRODUCTID,NAME,DESCN as description,CATEGORY as categoryId from PRODUCT WHERE lower(name) like ?";
-
+    private final static String getProductList = "SELECT * FROM PRODUCT";
     @Override
     public List<Product> getProductListByCategoryId(String categoryId) {
         List<Product> products = new ArrayList<Product>();
@@ -80,9 +80,38 @@ public class ProductDAOImpl implements ProductDAO{
             while (resultSet.next()) {
                 Product product = new Product();
                 product.setProductId(resultSet.getString(1));
-                product.setName(resultSet.getString(2));
-                product.setDescription(resultSet.getString(3));
-                product.setCategoryId(resultSet.getString(4));
+                product.setCategoryId(resultSet.getString(2));
+                product.setName(resultSet.getString(3));
+                product.setDescription(resultSet.getString(4));
+                productList.add(product);
+            }
+            DBUtil.closeResultSet(resultSet);
+            DBUtil.closePreparedStatement(pStatement);
+            DBUtil.closeConnection(connection);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return productList;
+    }
+
+    @Override
+    public List<Product> getAllProduct() {
+
+        List<Product> productList = new ArrayList<Product>();
+
+        try {
+            Connection connection = DBUtil.getConnection();
+            PreparedStatement pStatement = connection
+                    .prepareStatement(getProductList);
+            ResultSet resultSet = pStatement.executeQuery();
+            while (resultSet.next()) {
+                Product product = new Product();
+                product.setProductId(resultSet.getString(1));
+                product.setCategoryId(resultSet.getString(2));
+                product.setName(resultSet.getString(3));
+                product.setDescription(resultSet.getString(4));
+
                 productList.add(product);
             }
             DBUtil.closeResultSet(resultSet);

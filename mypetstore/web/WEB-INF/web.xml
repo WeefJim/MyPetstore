@@ -101,6 +101,10 @@
         <servlet-name>GetCategoryInfoServlet</servlet-name>
         <servlet-class>org.csu.mypetstore.web.servlets.GetCategoryInfoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetAllProductsServlet</servlet-name>
+        <servlet-class>org.csu.mypetstore.web.servlets.GetAllProductsServlet</servlet-class>
+    </servlet>
 
 
     <servlet-mapping>
@@ -211,6 +215,11 @@
     <servlet-mapping>
         <servlet-name>GetCategoryInfoServlet</servlet-name>
         <url-pattern>/getCategoryInfo</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>GetAllProductsServlet</servlet-name>
+        <url-pattern>/getAllProducts</url-pattern>
     </servlet-mapping>
 
 </web-app>

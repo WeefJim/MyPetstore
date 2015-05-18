@@ -11,4 +11,5 @@ public interface ProductDAO {
     List<Product> getProductListByCategoryId(String categoryId);
     Product getProduct(String productId);
     List<Product> searchProductList(String keywords);
+    List<Product> getAllProduct();
 }

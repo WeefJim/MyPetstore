@@ -45,7 +45,7 @@
       function sendRequeset(url){
         createXMLHttpRequest();
         xmlHttpRequest.open("GET", url, true);
-        xmlHttpRequest.onreadystatechange = processResponse;
+        xmlHttpRequest.onreadystatechange = tipResponse;
         xmlHttpRequest.send(null);
       }
 
@@ -53,7 +53,7 @@
       var divtip = document.getElementById("tip");
       var x,y;
 
-      function processResponse(){
+      function tipResponse(){
         if(xmlHttpRequest.readyState == 4){
           if(xmlHttpRequest.status == 200){
             var products = xmlHttpRequest.responseText;

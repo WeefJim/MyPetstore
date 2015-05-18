@@ -12,7 +12,7 @@
     Welcome to MyPetStore!
   </div>
 </div>
-<div id="tip" style="display: none; position: absolute; z-index: 1;width: 300px;height: auto !important;height:100px;min-height: 50px; background-color: lightyellow" ></div>
+<div id="tip" style="display: none; position: absolute; z-index: 1;width: 360px;height: auto !important;height:100px;min-height: 50px; background-color: lightyellow" ></div>
 <div id="Main">
   <div id="Sidebar">
     <div id="SidebarContent">
@@ -45,7 +45,7 @@
       function sendRequeset(url){
         createXMLHttpRequest();
         xmlHttpRequest.open("GET", url, true);
-        xmlHttpRequest.onreadystatechange = processResponse;
+        xmlHttpRequest.onreadystatechange = tipResponse;
         xmlHttpRequest.send(null);
       }
 
@@ -53,7 +53,7 @@
       var divtip = document.getElementById("tip");
       var x,y;
 
-      function processResponse(){
+      function tipResponse(){
         if(xmlHttpRequest.readyState == 4){
           if(xmlHttpRequest.status == 200){
             var products = xmlHttpRequest.responseText;
